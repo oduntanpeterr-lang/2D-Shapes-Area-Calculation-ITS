@@ -1,7 +1,3 @@
-Here’s a **clean, professional GitHub README.md** tailored for your project and suitable for academic, portfolio, or educational use.
-
----
-
 # 🎓 Geometry Area Tutor (OWL-Based Intelligent Tutoring System)
 
 An **OWL-driven Intelligent Tutoring System (ITS)** for learning **2D geometry area calculations**, built with **Python and Tkinter**.
