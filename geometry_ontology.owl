@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+    <!ENTITY geo "http://www.example.org/geometry#" >
+]>
+
+<rdf:RDF xmlns="http://www.example.org/geometry#"
+     xml:base="http://www.example.org/geometry"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:geo="http://www.example.org/geometry#">
+
+    <!-- Ontology Declaration -->
+    <owl:Ontology rdf:about="http://www.example.org/geometry">
+        <rdfs:label>Geometry Education Ontology</rdfs:label>
+        <rdfs:comment>An ontology for 2D geometric shapes and area calculation concepts for intelligent tutoring systems</rdfs:comment>
+        <owl:versionInfo>1.0</owl:versionInfo>
+    </owl:Ontology>
+
+    <!-- =============================================== -->
+    <!-- CLASSES                                         -->
+    <!-- =============================================== -->
+
+    <!-- Top Level Geometric Concepts -->
+    <owl:Class rdf:about="&geo;GeometricEntity">
+        <rdfs:label>Geometric Entity</rdfs:label>
+        <rdfs:comment>The root class for all geometric entities</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;Shape2D">
+        <rdfs:subClassOf rdf:resource="&geo;GeometricEntity"/>
+        <rdfs:label>2D Shape</rdfs:label>
+        <rdfs:comment>A two-dimensional geometric shape</rdfs:comment>
+    </owl:Class>
+
+    <!-- Conic Sections -->
+    <owl:Class rdf:about="&geo;ConicSection">
+        <rdfs:subClassOf rdf:resource="&geo;Shape2D"/>
+        <rdfs:label>Conic Section</rdfs:label>
+        <rdfs:comment>A curve obtained from the intersection of a cone with a plane</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;Circle">
+        <rdfs:subClassOf rdf:resource="&geo;ConicSection"/>
+        <rdfs:label>Circle</rdfs:label>
+        <rdfs:comment>A set of points equidistant from a center point</rdfs:comment>
+    </owl:Class>
+
+    <!-- Polygons -->
+    <owl:Class rdf:about="&geo;Polygon">
+        <rdfs:subClassOf rdf:resource="&geo;Shape2D"/>
+        <rdfs:label>Polygon</rdfs:label>
+        <rdfs:comment>A closed figure made up of straight line segments</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;Triangle">
+        <rdfs:subClassOf rdf:resource="&geo;Polygon"/>
+        <rdfs:label>Triangle</rdfs:label>
+        <rdfs:comment>A polygon with three sides</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;Quadrilateral">
+        <rdfs:subClassOf rdf:resource="&geo;Polygon"/>
+        <rdfs:label>Quadrilateral</rdfs:label>
+        <rdfs:comment>A polygon with four sides</rdfs:comment>
+    </owl:Class>
+
+    <!-- Specific Quadrilaterals -->
+    <owl:Class rdf:about="&geo;Trapezoid">
+        <rdfs:subClassOf rdf:resource="&geo;Quadrilateral"/>
+        <rdfs:label>Trapezoid</rdfs:label>
+        <rdfs:comment>A quadrilateral with one pair of parallel sides</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;Parallelogram">
+        <rdfs:subClassOf rdf:resource="&geo;Quadrilateral"/>
+        <rdfs:label>Parallelogram</rdfs:label>
+        <rdfs:comment>A quadrilateral with opposite sides parallel</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;Rectangle">
+        <rdfs:subClassOf rdf:resource="&geo;Quadrilateral"/>
+        <rdfs:label>Rectangle</rdfs:label>
+        <rdfs:comment>A quadrilateral with four right angles</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;Square">
+        <rdfs:subClassOf rdf:resource="&geo;Rectangle"/>
+        <rdfs:label>Square</rdfs:label>
+        <rdfs:comment>A rectangle with all sides equal</rdfs:comment>
+    </owl:Class>
+
+    <!-- Geometric Properties -->
+    <owl:Class rdf:about="&geo;GeometricProperty">
+        <rdfs:label>Geometric Property</rdfs:label>
+        <rdfs:comment>A measurable attribute of a geometric shape</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;LinearMeasurement">
+        <rdfs:subClassOf rdf:resource="&geo;GeometricProperty"/>
+        <rdfs:label>Linear Measurement</rdfs:label>
+        <rdfs:comment>A measurement of distance in one dimension</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;AreaMeasurement">
+        <rdfs:subClassOf rdf:resource="&geo;GeometricProperty"/>
+        <rdfs:label>Area Measurement</rdfs:label>
+        <rdfs:comment>A measurement of two-dimensional space</rdfs:comment>
+    </owl:Class>
+
+    <!-- Mathematical Concepts -->
+    <owl:Class rdf:about="&geo;Formula">
+        <rdfs:label>Formula</rdfs:label>
+        <rdfs:comment>A mathematical expression for calculation</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;AreaFormula">
+        <rdfs:subClassOf rdf:resource="&geo;Formula"/>
+        <rdfs:label>Area Formula</rdfs:label>
+        <rdfs:comment>A formula for calculating area</rdfs:comment>
+    </owl:Class>
+
+    <!-- Educational Concepts -->
+    <owl:Class rdf:about="&geo;DifficultyLevel">
+        <rdfs:label>Difficulty Level</rdfs:label>
+        <rdfs:comment>The complexity level for learning</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;Beginner">
+        <rdfs:subClassOf rdf:resource="&geo;DifficultyLevel"/>
+        <rdfs:label>Beginner</rdfs:label>
+        <rdfs:comment>Basic difficulty level (Level 1)</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;Intermediate">
+        <rdfs:subClassOf rdf:resource="&geo;DifficultyLevel"/>
+        <rdfs:label>Intermediate</rdfs:label>
+        <rdfs:comment>Moderate difficulty level (Level 2)</rdfs:comment>
+    </owl:Class>
+
+    <owl:Class rdf:about="&geo;Advanced">
+        <rdfs:subClassOf rdf:resource="&geo;DifficultyLevel"/>
+        <rdfs:label>Advanced</rdfs:label>
+        <rdfs:comment>Complex difficulty level (Level 3)</rdfs:comment>
+    </owl:Class>
+
+    <!-- =============================================== -->
+    <!-- OBJECT PROPERTIES                               -->
+    <!-- =============================================== -->
+
+    <owl:ObjectProperty rdf:about="&geo;hasProperty">
+        <rdfs:domain rdf:resource="&geo;Shape2D"/>
+        <rdfs:range rdf:resource="&geo;GeometricProperty"/>
+        <rdfs:label>has property</rdfs:label>
+        <rdfs:comment>Relates a shape to its geometric properties</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&geo;hasFormula">
+        <rdfs:domain rdf:resource="&geo;Shape2D"/>
+        <rdfs:range rdf:resource="&geo;AreaFormula"/>
+        <rdfs:label>has formula</rdfs:label>
+        <rdfs:comment>Relates a shape to its area calculation formula</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&geo;hasDifficulty">
+        <rdfs:domain rdf:resource="&geo;Shape2D"/>
+        <rdfs:range rdf:resource="&geo;DifficultyLevel"/>
+        <rdfs:label>has difficulty</rdfs:label>
+        <rdfs:comment>Relates a shape to its difficulty level for learning</rdfs:comment>
+    </owl:ObjectProperty>
+
+    <owl:ObjectProperty rdf:about="&geo;isSubShapeOf">
+        <rdfs:domain rdf:resource="&geo;Shape2D"/>
+        <rdfs:range rdf:resource="&geo;Shape2D"/>
+        <rdfs:label>is subshape of</rdfs:label>
+        <rdfs:comment>Indicates hierarchical relationship between shapes</rdfs:comment>
+        <rdf:type rdf:resource="&owl;TransitiveProperty"/>
+    </owl:ObjectProperty>
+
+    <!-- =============================================== -->
+    <!-- DATA PROPERTIES                                 -->
+    <!-- =============================================== -->
+
+    <owl:DatatypeProperty rdf:about="&geo;hasLength">
+        <rdfs:domain rdf:resource="&geo;Shape2D"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:label>has length</rdfs:label>
+        <rdfs:comment>The length measurement of a shape</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasWidth">
+        <rdfs:domain rdf:resource="&geo;Rectangle"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:label>has width</rdfs:label>
+        <rdfs:comment>The width measurement of a rectangle</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasSide">
+        <rdfs:domain rdf:resource="&geo;Square"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:label>has side</rdfs:label>
+        <rdfs:comment>The side length of a square</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasBase">
+        <rdfs:domain rdf:resource="&geo;Shape2D"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:label>has base</rdfs:label>
+        <rdfs:comment>The base measurement of a shape</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasHeight">
+        <rdfs:domain rdf:resource="&geo;Shape2D"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:label>has height</rdfs:label>
+        <rdfs:comment>The height measurement of a shape</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasRadius">
+        <rdfs:domain rdf:resource="&geo;Circle"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:label>has radius</rdfs:label>
+        <rdfs:comment>The radius of a circle</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasBase1">
+        <rdfs:domain rdf:resource="&geo;Trapezoid"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:label>has base 1</rdfs:label>
+        <rdfs:comment>The first base of a trapezoid</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasBase2">
+        <rdfs:domain rdf:resource="&geo;Trapezoid"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:label>has base 2</rdfs:label>
+        <rdfs:comment>The second base of a trapezoid</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasArea">
+        <rdfs:domain rdf:resource="&geo;Shape2D"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
+        <rdfs:label>has area</rdfs:label>
+        <rdfs:comment>The calculated area of a shape</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasFormulaExpression">
+        <rdfs:domain rdf:resource="&geo;AreaFormula"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:label>has formula expression</rdfs:label>
+        <rdfs:comment>The mathematical expression of the formula</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasDifficultyValue">
+        <rdfs:domain rdf:resource="&geo;DifficultyLevel"/>
+        <rdfs:range rdf:resource="&xsd;integer"/>
+        <rdfs:label>has difficulty value</rdfs:label>
+        <rdfs:comment>Numeric value representing difficulty (1-3)</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <owl:DatatypeProperty rdf:about="&geo;hasDescription">
+        <rdfs:domain rdf:resource="&geo;Shape2D"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+        <rdfs:label>has description</rdfs:label>
+        <rdfs:comment>Textual description of the shape</rdfs:comment>
+    </owl:DatatypeProperty>
+
+    <!-- =============================================== -->
+    <!-- INDIVIDUALS (INSTANCES)                         -->
+    <!-- =============================================== -->
+
+    <!-- Difficulty Level Instances -->
+    <owl:NamedIndividual rdf:about="&geo;BeginnerLevel">
+        <rdf:type rdf:resource="&geo;Beginner"/>
+        <geo:hasDifficultyValue rdf:datatype="&xsd;integer">1</geo:hasDifficultyValue>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;IntermediateLevel">
+        <rdf:type rdf:resource="&geo;Intermediate"/>
+        <geo:hasDifficultyValue rdf:datatype="&xsd;integer">2</geo:hasDifficultyValue>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;AdvancedLevel">
+        <rdf:type rdf:resource="&geo;Advanced"/>
+        <geo:hasDifficultyValue rdf:datatype="&xsd;integer">3</geo:hasDifficultyValue>
+    </owl:NamedIndividual>
+
+    <!-- Area Formula Instances -->
+    <owl:NamedIndividual rdf:about="&geo;SquareAreaFormula">
+        <rdf:type rdf:resource="&geo;AreaFormula"/>
+        <geo:hasFormulaExpression rdf:datatype="&xsd;string">side²</geo:hasFormulaExpression>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;RectangleAreaFormula">
+        <rdf:type rdf:resource="&geo;AreaFormula"/>
+        <geo:hasFormulaExpression rdf:datatype="&xsd;string">length × width</geo:hasFormulaExpression>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;TriangleAreaFormula">
+        <rdf:type rdf:resource="&geo;AreaFormula"/>
+        <geo:hasFormulaExpression rdf:datatype="&xsd;string">½ × base × height</geo:hasFormulaExpression>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;CircleAreaFormula">
+        <rdf:type rdf:resource="&geo;AreaFormula"/>
+        <geo:hasFormulaExpression rdf:datatype="&xsd;string">π × radius²</geo:hasFormulaExpression>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;TrapezoidAreaFormula">
+        <rdf:type rdf:resource="&geo;AreaFormula"/>
+        <geo:hasFormulaExpression rdf:datatype="&xsd;string">½ × (base1 + base2) × height</geo:hasFormulaExpression>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;ParallelogramAreaFormula">
+        <rdf:type rdf:resource="&geo;AreaFormula"/>
+        <geo:hasFormulaExpression rdf:datatype="&xsd;string">base × height</geo:hasFormulaExpression>
+    </owl:NamedIndividual>
+
+    <!-- Shape Type Instances with Complete Annotations -->
+    <owl:NamedIndividual rdf:about="&geo;SquareType">
+        <rdf:type rdf:resource="&geo;Square"/>
+        <geo:hasDescription rdf:datatype="&xsd;string">A rectangle with all sides equal</geo:hasDescription>
+        <geo:hasFormula rdf:resource="&geo;SquareAreaFormula"/>
+        <geo:hasDifficulty rdf:resource="&geo;BeginnerLevel"/>
+        <geo:isSubShapeOf rdf:resource="&geo;RectangleType"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;RectangleType">
+        <rdf:type rdf:resource="&geo;Rectangle"/>
+        <geo:hasDescription rdf:datatype="&xsd;string">A quadrilateral with four right angles</geo:hasDescription>
+        <geo:hasFormula rdf:resource="&geo;RectangleAreaFormula"/>
+        <geo:hasDifficulty rdf:resource="&geo;BeginnerLevel"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;TriangleType">
+        <rdf:type rdf:resource="&geo;Triangle"/>
+        <geo:hasDescription rdf:datatype="&xsd;string">A polygon with three sides</geo:hasDescription>
+        <geo:hasFormula rdf:resource="&geo;TriangleAreaFormula"/>
+        <geo:hasDifficulty rdf:resource="&geo;IntermediateLevel"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;CircleType">
+        <rdf:type rdf:resource="&geo;Circle"/>
+        <geo:hasDescription rdf:datatype="&xsd;string">A set of points equidistant from center</geo:hasDescription>
+        <geo:hasFormula rdf:resource="&geo;CircleAreaFormula"/>
+        <geo:hasDifficulty rdf:resource="&geo;IntermediateLevel"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;TrapezoidType">
+        <rdf:type rdf:resource="&geo;Trapezoid"/>
+        <geo:hasDescription rdf:datatype="&xsd;string">A quadrilateral with one pair of parallel sides</geo:hasDescription>
+        <geo:hasFormula rdf:resource="&geo;TrapezoidAreaFormula"/>
+        <geo:hasDifficulty rdf:resource="&geo;AdvancedLevel"/>
+    </owl:NamedIndividual>
+
+    <owl:NamedIndividual rdf:about="&geo;ParallelogramType">
+        <rdf:type rdf:resource="&geo;Parallelogram"/>
+        <geo:hasDescription rdf:datatype="&xsd;string">A quadrilateral with opposite sides parallel</geo:hasDescription>
+        <geo:hasFormula rdf:resource="&geo;ParallelogramAreaFormula"/>
+        <geo:hasDifficulty rdf:resource="&geo;IntermediateLevel"/>
+    </owl:NamedIndividual>
+
+</rdf:RDF>
